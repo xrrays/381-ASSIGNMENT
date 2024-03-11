@@ -214,11 +214,10 @@ form input {
     background-color: #4CAF50;
     color: white;
     padding: 10px;
-    border: none;
+    border: 2px;
     border-radius: 5px;
     margin: 10px;
     cursor: pointer;
-    opacity: .5
 }
 
 .login-btn:hover {
@@ -245,4 +244,19 @@ form input {
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
+}
+
+.signup-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    opacity: 0.5;
+}
+
+.signup-btn:hover {
+    background-color: #45A049;
+    opacity: 1.0;
 }
