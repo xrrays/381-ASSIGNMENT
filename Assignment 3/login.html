@@ -34,19 +34,24 @@ Description : The code for the login page
         <a href="login.html" class="nav-link">Login</a> 
     </nav>
 
-    <main>
+    <main id="loginPage">
         <section class="login-form">
             <form id="loginForm" action="#" method="post">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required placeholder="Enter your username">
-
+    
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required placeholder="Enter your password">
-
+    
                 <button type="submit" class="login-btn">Login</button>
-                 <p>Don't have an account? <a href="signup.html" class="signup-link">Sign up here</a>.</p>
+                <p>Don't have an account? <a href="signup.html" class="signup-link">Sign up here</a>.</p>
             </form>
         </section>
+    
+        <!-- Login Message Box Container -->
+        <div id="loginMessageBox" class="message-box">
+            <p></p>
+        </div>
     </main>
 
     <footer class="footer">

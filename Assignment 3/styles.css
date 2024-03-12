@@ -261,7 +261,6 @@ form input {
     opacity: 1.0;
 }
 
-/* Inside your styles.css file */
 .error-box {
     display: flex;
     flex-direction: column;
@@ -275,4 +274,11 @@ form input {
 .error-box p {
     margin: 0;
     padding: 5px 0;
+}
+
+#loginPage .message-box {
+    border: 2px solid #000; /* Adjust border color as needed */
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 20px;
 }

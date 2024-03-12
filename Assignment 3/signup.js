@@ -5,11 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var emailInput = document.getElementById('email');
     var passwordInput = document.getElementById('password');
     var confirmPasswordInput = document.getElementById('confirmPassword');
-    var usernameError = document.getElementById('usernameError');
-    var emailError = document.getElementById('emailError');
-    var confirmPasswordError = document.getElementById('confirmPasswordError');
-    var signupMessage = document.getElementById('signupMessage');
-    var errorBox = document.getElementById('errorBox');
+    var messageBox = document.getElementById('signupMessageBox');
 
     signupForm.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
@@ -80,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmPasswordError.textContent = ''; // Clear error message
         }
     });
+
+    
 // Function to validate username
     function isValidUsername(username) {
         // Username must be between 3 and 20 characters long
@@ -98,6 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Cannot contain spaces
         var isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+[\]{}|;:'",.<>?/`~])[A-Za-z\d!@#$%^&*()-_=+[\]{}|;:'",.<>?/`~]{8,}$/.test(password);
         return isValid;
+    }
+
+    function isValidEmail(email) {
+        // Regular expression to validate email format
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 
     // Inside the input event listener for the password field

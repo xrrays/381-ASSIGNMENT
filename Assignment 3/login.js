@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var loginForm = document.getElementById('loginForm');
     var usernameInput = document.getElementById('username');
     var passwordInput = document.getElementById('password');
-    var messageBox = document.getElementById('messageBox');
+    var loginMessageBox = document.getElementById('loginMessageBox');
 
     loginForm.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
@@ -11,29 +11,30 @@ document.addEventListener('DOMContentLoaded', function () {
         var usernameValue = usernameInput.value.trim();
         var passwordValue = passwordInput.value.trim();
 
-        // Make an API call to fetch user data
         fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error in fetching user data.');
+                }
+                return response.json();
+            })
             .then(users => {
-                // Check if username exists and password matches
                 var user = users.find(user => user.username === usernameValue);
                 if (user && user.email === passwordValue) {
-                    // Successful login
                     displayMessage('success', 'Login Successful!');
                 } else {
-                    // Invalid credentials
-                    displayMessage('error', 'Invalid username or useremail. Please try again.');
+                    displayMessage('error', 'Invalid username or password. Please try again.');
                 }
             })
             .catch(error => {
-                // Error in fetching data from API
-                displayMessage('error', 'Error in fetching user data.');
+                displayMessage('error', error.message);
             });
     });
 
     // Function to display messages
     function displayMessage(type, message) {
-        messageBox.textContent = message;
-        messageBox.className = 'message-' + type;
+        var messageParagraph = loginMessageBox.querySelector('p');
+        messageParagraph.textContent = message;
+        loginMessageBox.className = 'message-box message-' + type;
     }
 });
