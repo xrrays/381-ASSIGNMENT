@@ -1,9 +1,11 @@
-// login.js
 document.addEventListener('DOMContentLoaded', function () {
     var loginForm = document.getElementById('loginForm');
     var usernameInput = document.getElementById('username');
     var passwordInput = document.getElementById('password');
     var loginMessageBox = document.getElementById('loginMessageBox');
+
+    // Hide the login message box by default
+    loginMessageBox.style.display = 'none';
 
     loginForm.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
@@ -36,5 +38,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var messageParagraph = loginMessageBox.querySelector('p');
         messageParagraph.textContent = message;
         loginMessageBox.className = 'message-box message-' + type;
+
+        // Display the message box
+        loginMessageBox.style.display = 'block';
     }
 });
