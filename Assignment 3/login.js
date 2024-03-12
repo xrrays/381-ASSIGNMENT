@@ -1,53 +1,39 @@
-// script.js
+// login.js
 document.addEventListener('DOMContentLoaded', function () {
     var loginForm = document.getElementById('loginForm');
-    var messageBox = document.createElement('div');
-    var messageText = document.createElement('p');
+    var usernameInput = document.getElementById('username');
+    var passwordInput = document.getElementById('password');
+    var messageBox = document.getElementById('messageBox');
 
-    // Style the message box
-    messageBox.style.border = '2px solid #f9f9f9';
-    messageBox.style.backgroundColor = '#f9f9f9';
-    messageBox.style.padding = '10px';
-    messageBox.style.margin = '20px';
-
-    // Append the message text to the message box
-    messageBox.appendChild(messageText);
-
-    // Append the message box to the document body
-    document.body.appendChild(messageBox);
-
-    // Handle form submission
     loginForm.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
 
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
+        var usernameValue = usernameInput.value.trim();
+        var passwordValue = passwordInput.value.trim();
 
-        // Make API call to fetch user data
+        // Make an API call to fetch user data
         fetch('https://jsonplaceholder.typicode.com/users')
-            .then(function (response) {
-                if (!response.ok) {
-                    throw new Error('Unable to fetch user data');
-                }
-                return response.json();
-            })
-            .then(function (data) {
-                // Validate username and password
-                var isValid = data.some(function (user) {
-                    return user.name === username && user.email === password;
-                });
-
-                // Display appropriate message
-                if (isValid) {
-                    messageText.textContent = 'Login successful!';
-                    messageBox.style.borderColor = 'green';
+            .then(response => response.json())
+            .then(users => {
+                // Check if username exists and password matches
+                var user = users.find(user => user.username === usernameValue);
+                if (user && user.email === passwordValue) {
+                    // Successful login
+                    displayMessage('success', 'Login Successful!');
                 } else {
-                    messageText.textContent = 'Invalid username or password.';
-                    messageBox.style.borderColor = 'red';
+                    // Invalid credentials
+                    displayMessage('error', 'Invalid username or useremail. Please try again.');
                 }
             })
-            .catch(function (error) {
-                alert('Error: ' + error.message);
+            .catch(error => {
+                // Error in fetching data from API
+                displayMessage('error', 'Error in fetching user data.');
             });
     });
+
+    // Function to display messages
+    function displayMessage(type, message) {
+        messageBox.textContent = message;
+        messageBox.className = 'message-' + type;
+    }
 });

@@ -260,3 +260,19 @@ form input {
     background-color: #45A049;
     opacity: 1.0;
 }
+
+/* Inside your styles.css file */
+.error-box {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: whitesmoke;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.error-box p {
+    margin: 0;
+    padding: 5px 0;
+}
